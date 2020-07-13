@@ -4,6 +4,7 @@ import io.github.kalilventura.codeblog.model.Post;
 import io.github.kalilventura.codeblog.service.ICodeblogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,5 +29,16 @@ public class CodeblogController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
+    public ModelAndView getPostDetails(@PathVariable("id") Long id) {
+        Post post = codeblogService.findById(id);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("postDetails");
+        // A chave que será buscada para buscar os dados na view
+        modelAndView.addObject("post", post);
+
+        return modelAndView;
+    }
 
 }
