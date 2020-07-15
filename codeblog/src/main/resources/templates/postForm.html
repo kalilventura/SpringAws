@@ -8,9 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Novo Post</title>
 
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="style/styleCss.css"/>-->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 </head>
 
 <body>
@@ -33,8 +42,9 @@
             </ol>
         </nav>
         <div>
-            <form method="post">
+            <th:block th:include="mensagemValidacao"></th:block>
 
+            <form method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name="titulo" placeholder="Título *">
                 </div>
@@ -59,5 +69,12 @@
 
     </div>
 </section>
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Texto *',
+        tabsize: 2,
+        height: 300
+    });
+</script>
 </body>
 </html>
