@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  database:
+    container_name: "postgres"
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: codeblog
+    ports:
+      - "15432:5432"
+    networks:
+      - codeblog-network
+
+  pgadmin:
+    container_name: "pgadmin"
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "kalilventur@hotmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - database
+    networks:
+      - codeblog-network
+
+  codeblog:
+    image: codeblog
+    restart: always
+    build:
+      context: .
+      dockerfile: codeblog/Dockerfile
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8080:8080"
+    command: mvn spring-boot:run
+    links:
+      - database
+    depends_on:
+      - database
+    networks:
+      - codeblog-network
+
+networks:
+  codeblog-network:
+    driver: bridge
