@@ -17,7 +17,7 @@ public class DummyData {
     CodeBlogRepository blogRepository;
 
     // Caso precisar popular o db descomentar a linha abaixo
-    @PostConstruct
+    // @PostConstruct
     public void savePosts(){
 
         List<Post> postList = new ArrayList<>();
